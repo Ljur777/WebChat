@@ -1,0 +1,51 @@
+формы запросов:
+-запрос на добавление/изменение/удаление пользователя UserRequest
+   Входящие данные
+      private String name;
+      private String password;
+      private String email;
+
+- ответ addUserResponse // юзеру вовращаем
+  Исходящий ответ:
+  private Integer id;
+  private String name; //имя
+  private String accessKey;  //ключ доступа
+  private List<InfoMessage> infos; //ошибки валидации, если юзер не может авторизоватся
+
+- ответ на запрос findUsers()
+  -private List<User> users;
+  -private List<InfoMessage> infos;
+
+
+//------------------------------------Msg-------------------------------//
+-запрос на добавление сообщения addMsgRequest
+  private String textMessage;
+  private String accessKey;
+
+-ответ msgResponse
+     Исходящий ответ:
+       private Integer id;
+       private String textMessage;
+       private LocaleDateTime creationTime;
+       private List<InfoMessage> infos; //если нет ид прийдет список ошибок
+
+- ответ на запрос findMessagesForAdmin()
+  -private List<Message> messages;
+  -private List<InfoMessage> infos;
+
+ - ответ на запрос findMessagesForUser()
+   -private List<MessagesForUser> messages;
+   -private List<InfoMessage> infos;
+
+   MessagesForUser должна содержать ограниченую информацию, что мы должны нашему юрезу сообщить:
+   private Integer id;
+   private String textMessage;
+   private LocaleDateTime creationTime;
+   private String userName;
+
+
+
+
+
+
+// return new ResponseEntity("id=" + id + " not found", HttpStatus.NOT_ACCEPTABLE);
